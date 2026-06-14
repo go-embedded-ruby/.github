@@ -70,8 +70,9 @@ recursion, `puts`/`print`/`p`; `puts 1 + 2` and `fib(20)` run end to end). Phase
 `new`/`initialize`, constants, dynamic dispatch via mutable method tables,
 `method_missing`, **modules + `include` (mixins), `super`, and blocks & `yield`**
 (real closures, `block_given?`, `Integer#times`). Behaviour differential-tested
-against MRI; 100% coverage; CI green across 6 arches. Next: Phase 2 — Symbols,
-real String/Array/Hash. The
+against MRI; 100% coverage; CI green across 6 arches. **Phase 2 in progress** —
+Symbols (`:name`) done; next: real String/Array/ordered Hash, `Comparable`/
+`Enumerable`. The
 [roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
 
 BSD-3-Clause.
