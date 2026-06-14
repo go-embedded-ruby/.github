@@ -68,9 +68,10 @@ with Ruby floor division, `if`/`unless`/`while`/`until` + modifiers, `def` +
 recursion, `puts`/`print`/`p`; `puts 1 + 2` and `fib(20)` run end to end). Phase
 1: the live object model — classes with inheritance, `@ivars`,
 `new`/`initialize`, constants, dynamic dispatch via mutable method tables,
-`method_missing`, **modules + `include` (mixins), and `super`**. Behaviour
-differential-tested against MRI; 100% coverage; CI green across 6 arches. Next:
-blocks & `yield`, then Phase 2 (Symbols, real String/Array/Hash). The
+`method_missing`, **modules + `include` (mixins), `super`, and blocks & `yield`**
+(real closures, `block_given?`, `Integer#times`). Behaviour differential-tested
+against MRI; 100% coverage; CI green across 6 arches. Next: Phase 2 — Symbols,
+real String/Array/Hash. The
 [roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
 
 BSD-3-Clause.
