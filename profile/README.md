@@ -12,7 +12,7 @@
   <a href="https://go-embedded-ruby.github.io/docs/"><img alt="Docs" src="https://img.shields.io/badge/docs-mkdocs--material-9B1C2E?style=flat-square"></a>
   <a href="https://github.com/go-embedded-ruby/ruby/blob/main/LICENSE"><img alt="License: BSD-3-Clause" src="https://img.shields.io/badge/license-BSD--3--Clause-blue?style=flat-square"></a>
   <img alt="Go 1.26.4+" src="https://img.shields.io/badge/go-1.26.4%2B-00ADD8?style=flat-square&logo=go&logoColor=white">
-  <a href="https://go-embedded-ruby.github.io/docs/phases/phase0/"><img alt="Phase 0" src="https://img.shields.io/badge/phase-0%20vertical%20slice-1a7f37?style=flat-square"></a>
+  <a href="https://go-embedded-ruby.github.io/docs/roadmap/"><img alt="Phase 1" src="https://img.shields.io/badge/phase-0%2B1%20object%20model-1a7f37?style=flat-square"></a>
 </p>
 
 ---
@@ -62,12 +62,15 @@ reimplementation of Onigmo (Ruby's regexp engine), reusable beyond Ruby.
 
 ## Status
 
-**Phase 0 — vertical slice — complete.** `source → lexer → parser → AST →
-compiler → bytecode → VM`. Integers, floats and strings; locals; arithmetic
-(Ruby floor division), comparison and equality; `if`/`elsif`/`else`, `unless`,
-`while`/`until`, statement modifiers; `def` with required parameters and
-recursion; `puts`/`print`/`p`. `puts 1 + 2` and `fib(20)` run end to end,
-behaviour differential-tested against MRI. The
+**Phases 0 and 1 — done.** Phase 0: the full `source → lexer → parser → AST →
+compiler → bytecode → VM` chain (integers/floats/strings, locals, arithmetic
+with Ruby floor division, `if`/`unless`/`while`/`until` + modifiers, `def` +
+recursion, `puts`/`print`/`p`; `puts 1 + 2` and `fib(20)` run end to end). Phase
+1: the live object model — classes with inheritance, `@ivars`,
+`new`/`initialize`, constants, dynamic dispatch via mutable method tables,
+`method_missing`, **modules + `include` (mixins), and `super`**. Behaviour
+differential-tested against MRI; 100% coverage; CI green across 6 arches. Next:
+blocks & `yield`, then Phase 2 (Symbols, real String/Array/Hash). The
 [roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
 
 BSD-3-Clause.
