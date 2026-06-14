@@ -1,0 +1,8 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits"],
+  "packageRules": [
+    {"description": "Auto-merge non-breaking Go updates", "matchManagers": ["gomod"], "matchUpdateTypes": ["minor", "patch"], "automerge": true},
+    {"description": "Group GitHub Actions updates", "matchManagers": ["github-actions"], "groupName": "github-actions", "automerge": true}
+  ]
+}
