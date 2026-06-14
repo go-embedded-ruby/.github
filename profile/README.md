@@ -71,7 +71,7 @@ recursion, `puts`/`print`/`p`; `puts 1 + 2` and `fib(20)` run end to end). Phase
 `method_missing`, **modules + `include` (mixins), `super`, and blocks & `yield`**
 (real closures, `block_given?`, `Integer#times`). Behaviour differential-tested
 against MRI; 100% coverage; CI green across 6 arches. **Phase 2 in progress** —
-Symbols (`:name`) and Array done; next: ordered Hash, String methods, `Comparable`/
+Symbols, Array, and ordered Hash done; next: Range, then Comparable/Enumerable in embedded Ruby, `Comparable`/
 `Enumerable`. The
 [roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
 
