@@ -28,7 +28,7 @@ the first Ruby you can embed inside a Go program with no C toolchain
 It is not another tree-walking interpreter: dispatch goes through **mutable
 per-class method tables** (the project's `objc_msgSend`), so monkey-patching,
 `define_method`, `method_missing`, singleton classes and reflection all fall out
-for free. Semantics track **Ruby 3.4**, grown test-first against an MRI
+for free. Semantics track **Ruby 4.0**, grown test-first against an MRI
 differential oracle, with **systematic performance benchmarks** and validation
 across all six 64-bit Go targets.
 
@@ -53,7 +53,7 @@ reimplementation of Onigmo (Ruby's regexp engine), reusable beyond Ruby.
 - **Reuse Go's GC.** Ruby objects are Go heap objects; nothing to collect by hand.
 - **Build-time stdlib selection.** Only the libraries the `require` graph reaches
   are embedded (build tags + `//go:embed`); the Go linker drops the rest.
-- **Ruby 3.4 semantics, test-driven growth.** Conformance verified against MRI
+- **Ruby 4.0 semantics, test-driven growth.** Conformance verified against MRI
   and a subset of ruby/spec.
 - **Benchmarked and portable.** Performance is measured against reference Ruby,
   accelerated with [go-asmgen] where it helps, and validated on all six 64-bit
