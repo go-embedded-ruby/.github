@@ -12,7 +12,7 @@
   <a href="https://go-embedded-ruby.github.io/docs/"><img alt="Docs" src="https://img.shields.io/badge/docs-mkdocs--material-9B1C2E?style=flat-square"></a>
   <a href="https://github.com/go-embedded-ruby/ruby/blob/main/LICENSE"><img alt="License: BSD-3-Clause" src="https://img.shields.io/badge/license-BSD--3--Clause-blue?style=flat-square"></a>
   <img alt="Go 1.26.4+" src="https://img.shields.io/badge/go-1.26.4%2B-00ADD8?style=flat-square&logo=go&logoColor=white">
-  <a href="https://go-embedded-ruby.github.io/docs/roadmap/"><img alt="Phase 1" src="https://img.shields.io/badge/phase-0%2B1%20object%20model-1a7f37?style=flat-square"></a>
+  <a href="https://go-embedded-ruby.github.io/docs/roadmap/"><img alt="Phases 1–6 active" src="https://img.shields.io/badge/phases-1--6%20active-1a7f37?style=flat-square"></a>
 </p>
 
 ---
@@ -28,7 +28,7 @@ the first Ruby you can embed inside a Go program with no C toolchain
 It is not another tree-walking interpreter: dispatch goes through **mutable
 per-class method tables** (the project's `objc_msgSend`), so monkey-patching,
 `define_method`, `method_missing`, singleton classes and reflection all fall out
-for free. Semantics track **Ruby 4.0**, grown test-first against an MRI
+for free. Semantics track **Ruby 4.0**, grown test-first against an MRI 4.0.5
 differential oracle, with **systematic performance benchmarks** and validation
 across all six 64-bit Go targets.
 
@@ -62,17 +62,32 @@ reimplementation of Onigmo (Ruby's regexp engine), reusable beyond Ruby.
 
 ## Status
 
-**Phases 0 and 1 — done.** Phase 0: the full `source → lexer → parser → AST →
-compiler → bytecode → VM` chain (integers/floats/strings, locals, arithmetic
-with Ruby floor division, `if`/`unless`/`while`/`until` + modifiers, `def` +
-recursion, `puts`/`print`/`p`; `puts 1 + 2` and `fib(20)` run end to end). Phase
-1: the live object model — classes with inheritance, `@ivars`,
-`new`/`initialize`, constants, dynamic dispatch via mutable method tables,
-`method_missing`, **modules + `include` (mixins), `super`, and blocks & `yield`**
-(real closures, `block_given?`, `Integer#times`). Behaviour differential-tested
-against MRI; 100% coverage; CI green across 6 arches. **Phase 2 in progress** —
-Symbols, Array, and ordered Hash done; next: Range, then Comparable/Enumerable in embedded Ruby, `Comparable`/
-`Enumerable`. The
+**Phases 0 and 1 — done; Phases 2–6 active.** The live object model and a broad
+slice of the language run today, every feature **differential-tested against MRI
+Ruby 4.0.5** with **100% coverage** enforced in CI across all six 64-bit arches:
+
+- **Values:** integers, floats, strings, symbols, arrays, ordered hashes, ranges
+  (incl. beginless/endless), `Proc`/lambda, `Regexp`/`MatchData`, `Struct`.
+- **Methods & blocks:** the full argument system (required/optional/`*splat`/
+  keyword/`**rest`/`&block`), `{ }`/`do…end` blocks, `yield`, `block_given?`,
+  `Proc`/`lambda`/stabby `->(){}`, `&proc` block-pass, `Symbol#to_proc`, setter
+  defs `def name=`, endless methods `def foo = expr`, `super`.
+- **Classes & modules:** inheritance, `@ivars`, `new`/`initialize`, constants and
+  constant assignment, class methods `def self.foo`, `include` mixins,
+  `attr_accessor`/`reader`/`writer`, `Struct.new`.
+- **Metaprogramming:** `method_missing`, `send`/`public_send`, `respond_to?`,
+  `define_method`, `instance_eval`/`instance_exec`,
+  `class_eval`/`module_eval`/`class_exec`, `instance_variable_get`/`set`/`defined?`.
+- **Control flow:** `if`/`unless`/`while`/`until` + modifiers, `case`/`when`,
+  `begin`/`rescue`/`ensure`/`else`/`retry`, `break`/`next`.
+- **Collections:** Array/Hash/Range with `Enumerable` and `Comparable`, both
+  written once in embedded Ruby.
+- **Strings:** interpolation, `%`/`format`/`sprintf`, and a broad method set.
+- **Regular expressions:** `/re/imx` literals, `Regexp`/`MatchData`,
+  `=~`/`match`/`scan`/`gsub`/`sub`/`split` and the match globals, on the pure-Go
+  [go-onigmo/regexp](https://github.com/go-onigmo/regexp) engine (build stays CGO=0).
+
+Still ahead: mutable String, pattern matching `case/in`, Fiber, bignum. The
 [roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
 
 BSD-3-Clause.
