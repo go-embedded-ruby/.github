@@ -42,7 +42,7 @@ across all six 64-bit Go targets.
 | [**brand**](https://github.com/go-embedded-ruby/brand) | logos and brand assets |
 
 The regexp engine lives in a sibling org:
-**[go-onigmo/regexp](https://github.com/go-onigmo/regexp)** — a pure-Go
+**[go-ruby-regexp/regexp](https://github.com/go-ruby-regexp/regexp)** — a pure-Go
 reimplementation of Onigmo (Ruby's regexp engine), reusable beyond Ruby.
 
 ## Principles
@@ -85,7 +85,7 @@ Ruby 4.0.5** with **100% coverage** enforced in CI across all six 64-bit arches:
 - **Strings:** interpolation, `%`/`format`/`sprintf`, and a broad method set.
 - **Regular expressions:** `/re/imx` literals, `Regexp`/`MatchData`,
   `=~`/`match`/`scan`/`gsub`/`sub`/`split` and the match globals, on the pure-Go
-  [go-onigmo/regexp](https://github.com/go-onigmo/regexp) engine (build stays CGO=0).
+  [go-ruby-regexp/regexp](https://github.com/go-ruby-regexp/regexp) engine (build stays CGO=0).
 
 Still ahead: mutable String, pattern matching `case/in`, Fiber, bignum. The
 [roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
