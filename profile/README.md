@@ -92,8 +92,15 @@ enforced in CI across all six 64-bit arches:
   `=~`/`match`/`scan`/`gsub`/`sub`/`split` and the match globals, on the pure-Go
   [go-ruby-regexp/regexp](https://github.com/go-ruby-regexp/regexp) engine (build stays CGO=0).
 
-Still ahead: mutable String, pattern matching `case/in`, Fiber, bignum. The
-[roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) runs through Phase 8.
+Mutable String, pattern matching `case/in`, Fiber, Thread and arbitrary-precision
+Bignum have all landed; rbgo also binds **127 pure-Go `go-ruby-*` modules** (104
+into `rbgo` today) as native `require`-able libraries — from the stdlib through
+databases (`mysql2`, `mongo`, `etcd`, `bolt`), messaging (`nats`, `kafka`),
+RPC / data (`grpc`, `google/protobuf`, `arrow`, `parquet`), web / security
+(`faraday`, `puma`, `graphql`, `saml`, `webauthn`, `acme`, `rbnacl`, `age`) and
+docs / observability (`prawn`, `bleve`, `opentelemetry`). Still ahead is Phase 8
+(conformance & performance); the
+[roadmap](https://go-embedded-ruby.github.io/docs/roadmap/) has the detail.
 
 BSD-3-Clause.
 
