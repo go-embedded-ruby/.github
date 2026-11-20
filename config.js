@@ -19,7 +19,18 @@ module.exports = {
   autodiscoverFilter: ['go-embedded-ruby/**'],
   onboarding: false,
   requireConfig: 'optional',
-  dependencyDashboard: true,
+  // An OBJECT, not the boolean it used to be. Renovate 46.3.14 reports the
+  // boolean form as a config needing migration and prints the diff
+  //
+  //   -   "dependencyDashboard": true,
+  //   +   "dependencyDashboard": { "enabled": true },
+  //
+  // then exits 1 — so the bot's OWN pull request bumping the action is the one
+  // that goes red, and the lane stays red until this line is written the new
+  // way. Read from the failing job's log, not inferred: the node bump open at
+  // the same time passed the same lane, which is what says it is this and not
+  // the runner.
+  dependencyDashboard: { enabled: true },
   repositoryCache: 'enabled',
   // default.json beside this file is a PRESET, and a preset reaches a
   // repository only through an `extends` that names it. Sitting in the
